@@ -1,0 +1,108 @@
+2025-02-18 17:11:03,994 - Connected to: ('172.20.10.2', 65463)
+2025-02-18 18:50:17,156 - Connected to: ('172.20.10.2', 61343)
+2025-02-18 18:51:01,006 - Received voter details: 10001 abcd
+2025-02-18 18:51:01,100 - Invalid Voter: 10001
+2025-02-18 18:51:06,862 - Connected to: ('172.20.10.2', 61359)
+2025-02-18 18:51:19,807 - Received voter details: 10001 abcd
+2025-02-18 18:51:19,810 - Invalid Voter: 10001
+2025-02-18 18:52:22,090 - Connected to: ('172.20.10.2', 61367)
+2025-02-18 18:52:29,662 - Received voter details: 10001 abcd
+2025-02-18 18:52:29,675 - Voter Logged in... ID: 10001
+2025-02-18 18:52:42,852 - Vote Received from ID: 10001 - Processing...
+2025-02-18 18:52:42,877 - Vote Casted Successfully by voter ID = 10001
+2025-02-18 18:54:05,609 - Connected to: ('172.20.10.2', 61386)
+2025-02-18 18:54:16,273 - Received voter details: 10001 abcd
+2025-02-18 18:54:16,277 - Vote Already Cast by ID: 10001
+2025-02-18 18:54:16,282 - Vote Received from ID: 10001 - Processing...
+2025-02-18 18:54:16,284 - Vote Update Failed by voter ID = 10001
+2025-02-18 18:55:32,978 - Connected to: ('172.20.10.2', 61398)
+2025-02-18 18:55:40,311 - Received voter details: 10001 abcd
+2025-02-18 18:55:40,316 - Voter Logged in... ID: 10001
+2025-02-18 18:56:03,236 - Vote Received from ID: 10001 - Processing...
+2025-02-18 18:56:03,245 - Vote Casted Successfully by voter ID = 10001
+2025-02-18 19:02:04,360 - Connected to: ('172.20.10.2', 61786)
+2025-02-18 19:04:25,782 - Received voter details: 
+2025-02-18 19:04:25,782 - Invalid Credentials
+2025-02-18 19:10:28,833 - Connected to: ('172.20.10.2', 61999)
+2025-02-18 19:10:43,010 - Received voter details: 10001 abcd
+2025-02-18 19:10:43,014 - Vote Already Cast by ID: 10001
+2025-02-18 19:10:43,018 - Vote Received from ID: 10001 - Processing...
+2025-02-18 19:10:43,020 - Vote Update Failed by voter ID = 10001
+2025-02-18 19:11:02,009 - Connected to: ('172.20.10.2', 62009)
+2025-02-18 19:11:10,284 - Received voter details: 10001 abcd
+2025-02-18 19:11:10,287 - Voter Logged in... ID: 10001
+2025-02-18 19:11:15,853 - Vote Received from ID: 10001 - Processing...
+2025-02-18 19:11:15,868 - Vote Casted Successfully by voter ID = 10001
+2025-02-18 19:57:39,101 - Connected to: ('172.20.10.2', 58883)
+2025-02-18 19:57:47,143 - Received voter details: 10001 abcd
+2025-02-18 19:57:47,148 - Vote Already Cast by ID: 10001
+2025-02-18 19:57:47,153 - Vote Received from ID: 10001 - Processing...
+2025-02-18 19:57:47,154 - Vote Update Failed by voter ID = 10001
+2025-02-18 20:00:22,185 - Connected to: ('172.20.10.2', 58919)
+2025-02-18 20:00:30,489 - Received voter details: 10002 abcd
+2025-02-18 20:00:30,569 - Voter Logged in... ID: 10002
+2025-02-18 20:00:32,934 - Vote Received from ID: 10002 - Processing...
+2025-02-18 20:00:32,942 - Vote Casted Successfully by voter ID = 10002
+2025-02-18 20:13:14,153 - Connected to: ('192.168.244.229', 49672)
+2025-02-18 20:13:28,580 - Received voter details: 10001 abcd
+2025-02-18 20:13:28,580 - Voter Logged in... ID: 10001
+2025-02-18 20:13:33,425 - Vote Received from ID: 10001 - Processing...
+2025-02-18 20:13:33,441 - Vote Casted Successfully by voter ID = 10001
+2025-02-18 20:44:37,371 - Connected to: ('192.168.244.229', 55993)
+2025-02-18 20:44:46,524 - Received voter details: 10001 abcd
+2025-02-18 20:44:46,524 - Vote Already Cast by ID: 10001
+2025-02-18 20:44:46,524 - Vote Received from ID: 10001 - Processing...
+2025-02-18 20:44:46,524 - Vote Update Failed by voter ID = 10001
+2025-02-18 20:44:49,999 - Connected to: ('192.168.244.229', 55994)
+2025-02-18 20:44:58,738 - Received voter details: 10002 abcd
+2025-02-18 20:44:58,738 - Voter Logged in... ID: 10002
+2025-02-18 20:45:05,108 - Vote Received from ID: 10002 - Processing...
+2025-02-18 20:45:05,124 - Vote Casted Successfully by voter ID = 10002
+2025-02-18 23:43:47,924 - Connected to: ('192.168.244.229', 55160)
+2025-02-18 23:44:14,492 - Received voter details: 10003 abcd
+2025-02-18 23:44:14,492 - Voter Logged in... ID: 10003
+2025-02-18 23:45:01,303 - Connected to: ('192.168.244.229', 55165)
+2025-02-18 23:45:09,741 - Received voter details: 10003 abcd
+2025-02-18 23:45:09,741 - Voter Logged in... ID: 10003
+2025-02-18 23:45:17,488 - Vote Received from ID: 10003 - Processing...
+2025-02-18 23:45:17,488 - Vote Received from ID: 10003 - Processing...
+2025-02-18 23:45:17,504 - Vote Casted Successfully by voter ID = 10003
+2025-02-18 23:45:17,520 - Vote Update Failed by voter ID = 10003
+2025-02-18 23:45:27,200 - Connected to: ('192.168.244.229', 55168)
+2025-02-18 23:45:34,954 - Received voter details: 10003 abcd
+2025-02-18 23:45:34,954 - Vote Already Cast by ID: 10003
+2025-02-18 23:45:34,954 - Vote Received from ID: 10003 - Processing...
+2025-02-18 23:45:34,954 - Vote Update Failed by voter ID = 10003
+2025-02-18 23:45:39,708 - Connected to: ('192.168.244.229', 55171)
+2025-02-18 23:46:13,222 - Received voter details: 10004 abcd
+2025-02-18 23:46:13,222 - Voter Logged in... ID: 10004
+2025-02-18 23:46:24,095 - Connected to: ('192.168.244.229', 55195)
+2025-02-18 23:46:34,839 - Received voter details: 10005 abcd
+2025-02-18 23:46:34,839 - Voter Logged in... ID: 10005
+2025-02-18 23:48:17,360 - Vote Received from ID: 10004 - Processing...
+2025-02-18 23:48:17,375 - Vote Casted Successfully by voter ID = 10004
+2025-02-18 23:48:38,970 - Vote Received from ID: 10005 - Processing...
+2025-02-18 23:48:38,970 - Vote Casted Successfully by voter ID = 10005
+2025-02-19 00:24:02,428 - Connected to: ('192.168.244.229', 54511)
+2025-02-19 00:24:32,306 - Received voter details: Admin admin
+2025-02-19 00:24:32,306 - Invalid Credentials
+2025-02-19 00:24:38,796 - Connected to: ('192.168.244.229', 54515)
+2025-02-19 00:25:21,468 - Received voter details: 10006 12345
+2025-02-19 00:25:21,468 - Voter Logged in... ID: 10006
+2025-02-19 00:25:34,225 - Vote Received from ID: 10006 - Processing...
+2025-02-19 00:25:34,240 - Vote Casted Successfully by voter ID = 10006
+2025-02-19 00:26:54,102 - Connected to: ('192.168.244.229', 54525)
+2025-02-19 00:27:09,195 - Received voter details: 10007 12345
+2025-02-19 00:27:09,195 - Voter Logged in... ID: 10007
+2025-02-19 00:28:15,017 - Vote Received from ID: 10007 - Processing...
+2025-02-19 00:28:15,033 - Vote Casted Successfully by voter ID = 10007
+2025-02-19 00:30:31,732 - Connected to: ('192.168.244.229', 54543)
+2025-02-19 00:30:39,582 - Received voter details: 10008 12345
+2025-02-19 00:30:39,582 - Voter Logged in... ID: 10008
+2025-02-19 00:30:47,245 - Vote Received from ID: 10008 - Processing...
+2025-02-19 00:30:47,261 - Vote Casted Successfully by voter ID = 10008
+2025-02-19 00:32:45,517 - Connected to: ('192.168.244.229', 54554)
+2025-02-19 00:32:57,091 - Received voter details: 10009 12345
+2025-02-19 00:32:57,091 - Voter Logged in... ID: 10009
+2025-02-19 00:33:12,518 - Vote Received from ID: 10009 - Processing...
+2025-02-19 00:33:12,533 - Vote Casted Successfully by voter ID = 10009

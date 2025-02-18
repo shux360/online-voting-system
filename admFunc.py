@@ -1,8 +1,9 @@
 import tkinter as tk
 from tkinter import *
 from PIL import ImageTk, Image
-import dframe as df  # Import data frame module
-
+import dframe as df
+import threading
+import time
 
 def resetAll(root, frame1):
     df.count_reset()
@@ -11,7 +12,6 @@ def resetAll(root, frame1):
     Label(frame1, text="").grid(row=10, column=0)
     msg = Message(frame1, text="Reset Complete", width=500)
     msg.grid(row=11, column=0, columnspan=5)
-
 
 def showVotes(root, frame1):
     def updateVotes():
@@ -54,6 +54,42 @@ def showVotes(root, frame1):
     frame1.pack()
     updateVotes()
 
+def realTimeVoteCount(root, frame1):
+    def update():
+        result = df.show_result()
+        for party, count in result.items():
+            vote_labels[party].config(text=count)
+        frame1.after(5000, update)
+
+    root.title("Real-Time Vote Count")
+    for widget in frame1.winfo_children():
+        widget.destroy()
+
+    Label(frame1, text="Real-Time Vote Count", font=('Helvetica', 18, 'bold')).grid(row=0, column=1)
+    Label(frame1, text="").grid(row=1, column=0)
+
+    result = df.show_result()
+    vote_labels = {}
+
+    parties = ["jvp", "slpp", "sjb", "unp", "tna", "nota"]
+    image_files = ["img/Malimawa.jpg", "img/slpp.png", "img/sjb.png", "img/unp.png", "img/tna.png", "img/nota.jpg"]
+
+    frame1.image_refs = []  # Store image references to avoid garbage collection
+
+    for i, party in enumerate(parties):
+        try:
+            logo = ImageTk.PhotoImage(Image.open(image_files[i]).resize((40, 35), Image.LANCZOS))
+            frame1.image_refs.append(logo)
+            Label(frame1, image=logo).grid(row=i + 2, column=0)
+        except FileNotFoundError:
+            print(f"Warning: Image {image_files[i]} not found.")
+
+        Label(frame1, text=f"{party.upper()}:", font=('Helvetica', 12, 'bold')).grid(row=i + 2, column=1)
+        vote_labels[party] = Label(frame1, text=result[party], font=('Helvetica', 12, 'bold'))
+        vote_labels[party].grid(row=i + 2, column=2)
+
+    frame1.pack()
+    update()
 
 def adminHome():
     root = Tk()
@@ -66,7 +102,6 @@ def adminHome():
     Button(frame1, text="Exit", command=root.destroy).grid(row=0, column=2)
 
     root.mainloop()
-
 
 if __name__ == "__main__":
     adminHome()
