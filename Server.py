@@ -63,33 +63,25 @@ def client_thread(connection):
 
 def voting_Server():
     serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    host = "0.0.0.0"
+    host = "0.0.0.0"  # Listen on all network interfaces
     port = 4001
-
-    ThreadCount = 0
 
     try:
         serversocket.bind((host, port))
     except socket.error as e:
-        print(str(e))
-    print("Waiting for the connection")
+        print(f"Socket error: {e}")
+        return
 
-    serversocket.listen(10)
+    print(f"Server started. Listening on {host}:{port}")
 
-    print("Listening on " + str(host) + ":" + str(port))
+    serversocket.listen(10)  # Allow up to 10 simultaneous connections
 
     while True:
         client, address = serversocket.accept()
-        log_activity(f"Connected to: {address}")
-
-        print('Connected to :', address)
-
-        client.send("Connection Established".encode())  # 1
-        t = Thread(target=client_thread, args=(client,))
-        t.start()
-        ThreadCount += 1
-
-    serversocket.close()
+        print(f"Connected to: {address}")
+        client.send("Connection Established".encode())
+        # Start a new thread for each client
+        threading.Thread(target=client_thread, args=(client,)).start()
 
 if __name__ == '__main__':
     voting_Server()
