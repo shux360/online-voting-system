@@ -106,3 +106,5 @@
 2025-02-19 00:32:57,091 - Voter Logged in... ID: 10009
 2025-02-19 00:33:12,518 - Vote Received from ID: 10009 - Processing...
 2025-02-19 00:33:12,533 - Vote Casted Successfully by voter ID = 10009
+2025-02-20 00:50:10,801 - Received voter details: 
+2025-02-20 00:50:10,802 - Invalid Credentials

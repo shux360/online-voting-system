@@ -6,7 +6,7 @@ import socket
 def establish_connection(server_ip):
     try:
         client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        client_socket.settimeout(5)  # Set a timeout for the connection
+        client_socket.settimeout(10)  # Set a timeout for the connection
         print(f"Attempting to connect to {server_ip}:4001...")
         client_socket.connect((server_ip, 4001))  # Connect to the server's IP and port
         message = client_socket.recv(1024)  # Receive connection confirmation
