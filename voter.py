@@ -6,19 +6,26 @@ import socket
 def establish_connection(server_ip):
     try:
         client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        client_socket.settimeout(5)  # Set a timeout for the connection
+        print(f"Attempting to connect to {server_ip}:4001...")
         client_socket.connect((server_ip, 4001))  # Connect to the server's IP and port
         message = client_socket.recv(1024)  # Receive connection confirmation
         if message.decode() == "Connection Established":
+            print("Connected to the server!")
             return client_socket
         else:
+            print("Connection failed: Invalid response from server.")
             return None
+    except socket.timeout:
+        print("Connection failed: Timed out. Ensure the server is running and the IP is correct.")
+        return None
     except Exception as e:
         print(f"Connection failed: {e}")
         return None
 
 def voterLogin(root, frame1):
     # Replace with the server's IP address
-    server_ip = "192.168.1.100"  # Change this to the actual server IP
+    server_ip = "192.168.244.229"  # Change this to the actual server IP
 
     # Establish connection to the server
     client_socket = establish_connection(server_ip)
