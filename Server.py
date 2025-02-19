@@ -62,8 +62,8 @@ def client_thread(connection):
     connection.close()
 
 def voting_Server():
-    serversocket = socket.socket()
-    host = socket.gethostname()
+    serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    host = "0.0.0.0"
     port = 4001
 
     ThreadCount = 0

@@ -59,6 +59,9 @@ def log_server(root,frame1,client_socket,voter_ID,password):
 
 
 def voterLogin(root,frame1):
+    server_ip = "192.168.244.229"
+
+    client_socket = establish_connection(server_ip)
 
     client_socket = establish_connection()
     if(client_socket == 'Failed'):
