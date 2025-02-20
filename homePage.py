@@ -4,50 +4,79 @@ from tkinter import *
 from Admin import AdmLogin
 from voter import voterLogin
 
+BG_COLOR = "#2A3457"
+BUTTON_BG = "#4CAF50"
+BUTTON_ACTIVE = "#45a049"
+TEXT_COLOR = "white"
+FONT_TITLE = ('Helvetica', 28, 'bold')
+FONT_BUTTON = ('Helvetica', 14, 'bold')
+BTN_PADX = 20
+BTN_PADY = 10
+
 
 def Home(root, frame1, frame2):
-
     for frame in root.winfo_children():
         for widget in frame.winfo_children():
             widget.destroy()
 
-    Button(frame2, text="Home", command = lambda: Home(root, frame1, frame2)).grid(row=0,column=0)
-    Label(frame2, text="                                                                         ").grid(row = 0,column = 1)
-    Label(frame2, text="                                                                         ").grid(row = 0,column = 2)
-    Label(frame2, text="         ").grid(row = 1,column = 1)
-    frame2.pack(side=TOP)
+    
+    home_btn = Button(frame2, text="🏠 Home", font=('Helvetica', 12), 
+                    bg="#3E4A6B", fg=TEXT_COLOR, activebackground="#4E5A7B",
+                    command=lambda: Home(root, frame1, frame2))
+    home_btn.pack(side=LEFT, padx=10, pady=5)
+    
+    
+    Frame(frame2, bg=BG_COLOR, height=10).pack(side=BOTTOM, fill=X)
+    frame2.configure(bg=BG_COLOR)
+    frame2.pack(side=TOP, fill=X)  
 
-    root.title("Home")
+    root.title("Secure Voting System")
+    root.configure(bg=BG_COLOR)
 
-    Label(frame1, text="Home", font=('Helvetica', 25, 'bold')).grid(row = 0, column = 1, rowspan=1)
-    Label(frame1, text="").grid(row = 1,column = 0)
-    #Admin Login
-    admin = Button(frame1, text="Admin Login", width=15, command = lambda: AdmLogin(root, frame1))
+    
+    frame1.configure(bg=BG_COLOR)
+    Label(frame1, text="Online Voting System", font=FONT_TITLE, 
+         bg=BG_COLOR, fg=TEXT_COLOR).pack(pady=30)
+    
+    
+    button_frame = Frame(frame1, bg=BG_COLOR)
+    button_frame.pack(expand=True)
 
-    #Voter Login
-    voter = Button(frame1, text="Voter Login", width=15, command = lambda: voterLogin(root, frame1))
+    
+    admin = Button(button_frame, text="Admin Login", font=FONT_BUTTON,
+                  bg="#E74C3C", fg=TEXT_COLOR, activebackground="#C0392B",
+                  padx=BTN_PADX, pady=BTN_PADY, width=15,
+                  command=lambda: AdmLogin(root, frame1))
+    admin.pack(pady=15)
 
-    #New Tab
-    newTab = Button(frame1, text="New Window", width=15, command = lambda: sb_p.call('start python homePage.py', shell=True))
+    
+    voter = Button(button_frame, text="Voter Login", font=FONT_BUTTON,
+                  bg=BUTTON_BG, fg=TEXT_COLOR, activebackground=BUTTON_ACTIVE,
+                  padx=BTN_PADX, pady=BTN_PADY, width=15,
+                  command=lambda: voterLogin(root, frame1))
+    voter.pack(pady=15)
 
-    Label(frame1, text="").grid(row = 2,column = 0)
-    Label(frame1, text="").grid(row = 4,column = 0)
-    Label(frame1, text="").grid(row = 6,column = 0)
-    admin.grid(row = 3, column = 1, columnspan = 2)
-    voter.grid(row = 5, column = 1, columnspan = 2)
-    newTab.grid(row = 7, column = 1, columnspan = 2)
+    
+    newTab = Button(button_frame, text="New Window", font=FONT_BUTTON,
+                   bg="#3498DB", fg=TEXT_COLOR, activebackground="#2980B9",
+                   padx=BTN_PADX, pady=BTN_PADY, width=15,
+                   command=lambda: sb_p.call('start python homePage.py', shell=True))
+    newTab.pack(pady=15)
 
-    frame1.pack()
+    
+    Label(frame1, text="🔒 Secure Digital Voting Platform", bg=BG_COLOR, 
+         fg="#95A5A6", font=('Helvetica', 12)).pack(side=BOTTOM, pady=20)
+    
+    frame1.pack(expand=True, fill=BOTH)
     root.mainloop()
-
 
 def new_home():
     root = Tk()
-    root.geometry('500x500')
+    root.geometry('800x600')
+    root.resizable(False, False)
     frame1 = Frame(root)
     frame2 = Frame(root)
     Home(root, frame1, frame2)
-
 
 if __name__ == "__main__":
     new_home()

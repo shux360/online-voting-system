@@ -1,67 +1,112 @@
 import tkinter as tk
 import dframe as df
-import Admin as adm
 from tkinter import ttk
-from Admin import *
 from tkinter import *
 from dframe import *
 
-def reg_server(root,frame1,name,sex,zone,city,passw):
-    if(passw=='' or passw==' '):
-        msg = Message(frame1, text="Error: Missing Fileds", width=500)
-        msg.grid(row = 10, column = 0, columnspan = 5)
+BG_COLOR = "#2A3457"  
+ACCENT_COLOR = "#3E4A6B"  
+TEXT_COLOR = "white"
+FONT_TITLE = ('Helvetica', 24, 'bold')
+FONT_LABEL = ('Helvetica', 12)
+FONT_INPUT = ('Helvetica', 11)
+ENTRY_BG = "#F0F0F0"
+BTN_BG = "#4CAF50"  
+BTN_ACTIVE = "#45a049"
+
+
+def reg_server(root, frame1, name, sex, zone, city, passw):
+
+    for widget in frame1.winfo_children():
+        if isinstance(widget, tk.Message) or isinstance(widget, tk.Label):
+            widget.destroy()
+
+    if not all([name, sex, zone, city, passw]):
+        error_msg = Label(frame1, text="⚠️ All fields are required!", 
+                         fg="#E74C3C", bg=BG_COLOR, font=FONT_LABEL)
+        error_msg.pack(pady=10)
+        return -1
+        
+    if ' ' in passw or len(passw) < 6:
+        error_msg = Label(frame1, text="⚠️ Password must be at least 6 characters\nand contain no spaces!", 
+                         fg="#E74C3C", bg=BG_COLOR, font=FONT_LABEL)
+        error_msg.pack(pady=10)
         return -1
 
     vid = df.taking_data_voter(name, sex, zone, city, passw)
     for widget in frame1.winfo_children():
         widget.destroy()
-    txt = "Registered Voter with\n\n VOTER I.D. = " + str(vid)
-    Label(frame1, text=txt, font=('Helvetica', 18, 'bold')).grid(row = 2, column = 1, columnspan=2)
+        
+    success_frame = Frame(frame1, bg=BG_COLOR)
+    success_frame.pack(expand=True, fill=BOTH)
+    
+    Label(success_frame, text="✓ Registration Successful", 
+         fg=BTN_BG, bg=BG_COLOR, font=FONT_TITLE).pack(pady=10)
+    Label(success_frame, text=f"Voter ID: {vid}", 
+         fg=TEXT_COLOR, bg=BG_COLOR, font=('Helvetica', 16)).pack(pady=5)
 
-
-def Register(root,frame1):
-
-    root.title("Register Voter")
+def Register(root, frame1):
+    root.title("Voter Registration")
+    root.configure(bg=BG_COLOR)
+    
     for widget in frame1.winfo_children():
         widget.destroy()
 
-    Label(frame1, text="Register Voter", font=('Helvetica', 18, 'bold')).grid(row = 0, column = 2, rowspan=1)
-    Label(frame1, text="").grid(row = 1,column = 0)
-    #Label(frame1, text="Voter ID:      ", anchor="e", justify=LEFT).grid(row = 2,column = 0)
-    Label(frame1, text="Name:         ", anchor="e", justify=LEFT).grid(row = 3,column = 0)
-    Label(frame1, text="Sex:              ", anchor="e", justify=LEFT).grid(row = 4,column = 0)
-    Label(frame1, text="Zone:           ", anchor="e", justify=LEFT).grid(row = 5,column = 0)
-    Label(frame1, text="City:             ", anchor="e", justify=LEFT).grid(row = 6,column = 0)
-    Label(frame1, text="Password:   ", anchor="e", justify=LEFT).grid(row = 7,column = 0)
+    main_frame = Frame(frame1, bg=BG_COLOR)
+    main_frame.pack(expand=True, fill=BOTH)
+    
+    Label(main_frame, text="Voter Registration", 
+         font=FONT_TITLE, bg=BG_COLOR, fg=TEXT_COLOR).pack(pady=20)
 
-    #voter_ID = tk.StringVar()
-    name = tk.StringVar()
-    sex = tk.StringVar()
-    zone = tk.StringVar()
-    city = tk.StringVar()
-    password = tk.StringVar()
+    form_frame = Frame(main_frame, bg=ACCENT_COLOR, padx=20, pady=20)
+    form_frame.pack()
 
-    #e1 = Entry(frame1, textvariable = voter_ID).grid(row = 2, column = 2)
-    e2 = Entry(frame1, textvariable = name).grid(row = 3, column = 2)
-    e5 = Entry(frame1, textvariable = zone).grid(row = 5, column = 2)
-    e6 = Entry(frame1, textvariable = city).grid(row = 6, column = 2)
-    e7 = Entry(frame1, textvariable = password).grid(row = 7, column = 2)
+    fields = [
+        ("Full Name", "name"),
+        ("Zone", "zone"),
+        ("City", "city"),
+        ("Password", "password")
+    ]
 
-    e4 = ttk.Combobox(frame1, textvariable = sex, width=17)
-    e4['values'] = ("Male","Female","Transgender")
-    e4.grid(row = 4, column = 2)
-    e4.current()
+    entries = {}
+    for idx, (label, field) in enumerate(fields):
+        Label(form_frame, text=label+":", font=FONT_LABEL,
+             bg=ACCENT_COLOR, fg=TEXT_COLOR).grid(row=idx, column=0, padx=10, pady=10, sticky="e")
+        
+        entry = Entry(form_frame, font=FONT_INPUT, bg=ENTRY_BG, 
+                     width=25, relief=tk.FLAT)
+        entry.grid(row=idx, column=1, padx=10, pady=10)
+        entries[field] = entry
+        
+        if field == "password":
+            entry.config(show="•")
 
-    reg = Button(frame1, text="Register", command = lambda: reg_server(root, frame1, name.get(), sex.get(), zone.get(), city.get(), password.get()), width=10)
-    Label(frame1, text="").grid(row = 8,column = 0)
-    reg.grid(row = 9, column = 3, columnspan = 2)
+    Label(form_frame, text="Gender:", font=FONT_LABEL,
+         bg=ACCENT_COLOR, fg=TEXT_COLOR).grid(row=4, column=0, padx=10, pady=10, sticky="e")
+    
+    gender = ttk.Combobox(form_frame, font=FONT_INPUT, width=23, 
+                         state="readonly")
+    gender['values'] = ("Male", "Female", "Other")
+    gender.current(0)
+    gender.grid(row=4, column=1, padx=10, pady=10)
 
-    frame1.pack()
+    reg_btn = Button(main_frame, text="Complete Registration", 
+                    font=('Helvetica', 14, 'bold'), 
+                    bg=BTN_BG, fg=TEXT_COLOR, activebackground=BTN_ACTIVE,
+                    padx=20, pady=10,
+                    command=lambda: reg_server(
+                        root, main_frame,
+                        entries["name"].get(),
+                        gender.get(),
+                        entries["zone"].get(),
+                        entries["city"].get(),
+                        entries["password"].get()
+                    ))
+    reg_btn.pack(pady=30)
+
+    style = ttk.Style()
+    style.theme_use('clam')
+    style.configure('TCombobox', fieldbackground=ENTRY_BG, background=ENTRY_BG)
+    
+    frame1.pack(expand=True, fill=BOTH)
     root.mainloop()
-
-
-# if __name__ == "__main__":
-#         root = Tk()
-#         root.geometry('500x500')
-#         frame1 = Frame(root)
-#         Register(root,frame1)

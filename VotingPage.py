@@ -1,15 +1,17 @@
 import tkinter as tk
 from tkinter import *
 from PIL import ImageTk, Image
-import threading
-import time
 
-# Custom colors and fonts
-BG_COLOR = "#f0f0f0"
-BUTTON_COLOR = "#4CAF50"
-TEXT_COLOR = "#333333"
-FONT = ("Helvetica", 12)
-HEADER_FONT = ("Helvetica", 18, "bold")
+# ================== STYLING CONSTANTS ==================
+BG_COLOR = "#2A3457"  # Dark blue background
+BUTTON_BG = "#4CAF50"  # Green buttons
+TEXT_COLOR = "white"
+FONT_TITLE = ('Helvetica', 24, 'bold')
+FONT_BUTTON = ('Helvetica', 12, 'bold')
+PARTY_COLOR = "#3E4A6B"  # Party button background
+ACTIVE_COLOR = "#4E5A7B"  # Active button color
+# ========================================================
+
 
 def voteCast(root, frame1, vote, client_socket):
     for widget in frame1.winfo_children():
@@ -48,58 +50,72 @@ def countdown_timer(root, frame1, timer_label, duration):
     Label(frame1, text="⏰ Time's up! Voting session closed.", font=FONT, bg=BG_COLOR, fg="red").grid(row=8, column=1, pady=20)
     root.after(3000, root.destroy)  # Close the window after 3 seconds
 
+
 def votingPg(root, frame1, client_socket):
     root.title("Cast Your Vote")
     root.configure(bg=BG_COLOR)
     for widget in frame1.winfo_children():
         widget.destroy()
 
+
+    # Store image references
+    image_refs = []
+
+    # Main container
+    main_frame = Frame(frame1, bg=BG_COLOR)
+    main_frame.pack(expand=True, fill=BOTH)
+
     # Header
-    Label(frame1, text="Cast Your Vote", font=HEADER_FONT, bg=BG_COLOR, fg=TEXT_COLOR).grid(row=0, column=1, pady=10)
+    Label(main_frame, text="Select Your Preferred Party", font=FONT_TITLE,
+         bg=BG_COLOR, fg=TEXT_COLOR).pack(pady=20)
 
-    # Add countdown timer label
-    timer_label = Label(frame1, text="⏳ Time Left: 02:00", font=FONT, bg=BG_COLOR, fg=TEXT_COLOR)
-    timer_label.grid(row=1, column=2, pady=10)
+    # Voting container
+    vote_frame = Frame(main_frame, bg=BG_COLOR)
+    vote_frame.pack(pady=20)
 
-    # Start the countdown timer in a separate thread
-    countdown_duration = 120  # 2 minutes
-    threading.Thread(target=countdown_timer, args=(root, frame1, timer_label, countdown_duration), daemon=True).start()
+    # Candidate list with improved styling
+    candidates = [
+        ("JVP", "Anura Kumara Dissanayaka", "img/Malimawa.jpg", "jvp"),
+        ("SLPP", "Mahinda Rajapaksha", "img/slpp.png", "slpp"),
+        ("SJB", "Sajith Premadasa", "img/sjb.png", "sjb"),
+        ("UNP", "Ranil Wikkramasingha", "img/unp.png", "unp"),
+        ("TNA", "R.Sampanthan", "img/tna.png", "tna"),
+        ("NOTA", "None of the Above", "img/nota.jpg", "nota")
+    ]
 
     vote = StringVar(frame1, "-1")
 
-    # Voting options
-    parties = [
-        ("JVP", "Anura Dissanayaka", "img/Malimawa.jpg"),
-        ("SLPP", "Mahinda Rajapaksha", "img/slpp.png"),
-        ("SJB", "Sajith Premadasa", "img/sjb.png"),
-        ("UNP", "Ranil Wikkramasingha", "img/unp.png"),
-        ("TNA", "R. Sampanthan", "img/tna.png"),
-        ("NOTA", "None of the Above", "img/nota.jpg")
-    ]
+    for idx, (party, leader, img_path, value) in enumerate(candidates):
+        row_frame = Frame(vote_frame, bg=BG_COLOR)
+        row_frame.grid(row=idx, column=0, pady=10, sticky="w")
 
-    for i, (party, candidate, image_path) in enumerate(parties):
+        # Party logo
         try:
-            logo = ImageTk.PhotoImage(Image.open(image_path).resize((50, 50), Image.LANCZOS))
-            party_logo = Label(frame1, image=logo, bg=BG_COLOR)
-            party_logo.image = logo  # Keep a reference to avoid garbage collection
-            party_logo.grid(row=i + 2, column=0, padx=10, pady=5)
-        except FileNotFoundError:
-            print(f"Warning: Image {image_path} not found.")
+            img = ImageTk.PhotoImage(Image.open(img_path).resize((60,60), Image.LANCZOS))
+            image_refs.append(img)
+            Label(row_frame, image=img, bg=BG_COLOR).pack(side=LEFT, padx=10)
+        except:
+            Label(row_frame, text="[LOGO]", bg=PARTY_COLOR, fg=TEXT_COLOR).pack(side=LEFT, padx=10)
 
-        Radiobutton(
-            frame1,
-            text=f"{party}\n{candidate}",
+        # Radio button
+        Radiobutton(row_frame, 
+            text=f"{party}\n{leader}",
+            font=('Helvetica', 11),
             variable=vote,
-            value=party.lower(),
-            indicator=0,
+            value=value,
+            bg=PARTY_COLOR,
+            activebackground=ACTIVE_COLOR,
+            fg=TEXT_COLOR,
+            selectcolor=PARTY_COLOR,
+            indicatoron=0,
+            width=25,
             height=3,
-            width=20,
-            bg=BUTTON_COLOR,
-            fg="white",
-            selectcolor="#45a049",
-            font=FONT,
-            command=lambda v=party.lower(): voteCast(root, frame1, v, client_socket)
-        ).grid(row=i + 2, column=1, padx=10, pady=5)
+            command=lambda v=value: voteCast(root, frame1, v, client_socket)
+        ).pack(side=LEFT, padx=10)
 
-    frame1.pack()
+    # Footer note
+    Label(main_frame, text="Your vote is confidential and secure", 
+         font=('Helvetica', 10), bg=BG_COLOR, fg="#95A5A6").pack(side=BOTTOM, pady=20)
+
+    frame1.pack(expand=True, fill=BOTH)
     root.mainloop()
