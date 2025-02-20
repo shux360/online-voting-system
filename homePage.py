@@ -72,7 +72,7 @@ def Home(root, frame1, frame2):
 
 def new_home():
     root = Tk()
-    root.geometry('800x600')
+    root.geometry('800x700')
     root.resizable(False, False)
     frame1 = Frame(root)
     frame2 = Frame(root)
