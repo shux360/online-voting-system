@@ -31,24 +31,22 @@ def resetAll(root, frame1):
 
 def showVotes(root, frame1):
     def updateVotes():
-        result = df.show_result()
-        for party in parties:
-            vote_labels[party].config(text=result[party])
-        frame1.after(5000, updateVotes)  
+        while True:
+            result = df.show_result()
+            for party in parties:
+                vote_labels[party].config(text=result[party])
+            time.sleep(1)  
 
     root.title("Live Vote Results")
     for widget in frame1.winfo_children():
         widget.destroy()
 
-    
     main_frame = Frame(frame1, bg=BG_COLOR)
     main_frame.pack(expand=True, fill=BOTH, padx=20, pady=20)
 
-    
     Label(main_frame, text="Live Election Results", 
          font=FONT_TITLE, bg=BG_COLOR, fg=TEXT_COLOR).pack(pady=20)
 
-    
     results_frame = Frame(main_frame, bg=BG_COLOR)
     results_frame.pack()
 
@@ -59,7 +57,6 @@ def showVotes(root, frame1):
     vote_labels = {}
     frame1.image_refs = []  
 
-    
     for idx, (party, img_path) in enumerate(zip(parties, images)):
         card = Frame(results_frame, bg=CARD_COLOR, padx=20, pady=10)
         card.grid(row=idx//2, column=idx%2, padx=10, pady=10)
@@ -77,8 +74,8 @@ def showVotes(root, frame1):
                                   bg=CARD_COLOR, fg="#4CAF50")
         vote_labels[party].grid(row=1, column=1, sticky="w")
 
-    
-    updateVotes()
+    thread = threading.Thread(target=updateVotes, daemon=True)
+    thread.start()
 
     main_frame.pack(expand=True)
 
@@ -89,19 +86,15 @@ def adminHome():
     root.configure(bg=BG_COLOR)
     root.title("Admin Dashboard")
 
-    
     main_frame = Frame(root, bg=BG_COLOR)
     main_frame.pack(expand=True, fill=BOTH, padx=40, pady=40)
 
-    
     Label(main_frame, text="Administration Panel", 
          font=FONT_TITLE, bg=BG_COLOR, fg=TEXT_COLOR).pack(pady=20)
 
-    
     btn_frame = Frame(main_frame, bg=BG_COLOR)
     btn_frame.pack(pady=30)
 
-    
     buttons = [
         ("📊 Show Votes", showVotes, BTN_BG),
         ("🔄 Reset System", lambda: resetAll(root, main_frame), DANGER_BG),

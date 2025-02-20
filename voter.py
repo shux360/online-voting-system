@@ -12,12 +12,13 @@ BTN_PADX = 20
 BTN_PADY = 10
 ENTRY_BG = "#F0F0F0"
 
-def establish_connection(server_ip):
+def establish_connection():
     try:
+        host = socket.gethostname()
         client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         client_socket.settimeout(10)  # Set a timeout for the connection
-        print(f"Attempting to connect to {server_ip}:4001...")
-        client_socket.connect((server_ip, 4001))  # Connect to the server's IP and port
+        print(f"Attempting to connect to {host}:4001...")
+        client_socket.connect((host, 4001))  # Connect to the server's IP and port
         message = client_socket.recv(1024)  # Receive connection confirmation
         if message.decode() == "Connection Established":
             print("Connected to the server!")

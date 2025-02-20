@@ -1,4 +1,5 @@
 import subprocess as sb_p
+import threading
 import tkinter as tk
 from tkinter import *
 from Admin import AdmLogin
@@ -13,6 +14,8 @@ FONT_BUTTON = ('Helvetica', 14, 'bold')
 BTN_PADX = 20
 BTN_PADY = 10
 
+def open_new_tab():
+    threading.Thread(target=lambda: sb_p.call('start python homePage.py', shell=True), daemon=True).start()
 
 def Home(root, frame1, frame2):
     for frame in root.winfo_children():
@@ -60,7 +63,7 @@ def Home(root, frame1, frame2):
     newTab = Button(button_frame, text="New Window", font=FONT_BUTTON,
                    bg="#3498DB", fg=TEXT_COLOR, activebackground="#2980B9",
                    padx=BTN_PADX, pady=BTN_PADY, width=15,
-                   command=lambda: sb_p.call('start python homePage.py', shell=True))
+                   command=open_new_tab)
     newTab.pack(pady=15)
 
     

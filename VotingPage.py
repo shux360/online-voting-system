@@ -1,6 +1,8 @@
+import time
 import tkinter as tk
 from tkinter import *
 from PIL import ImageTk, Image
+import threading
 
 # ================== STYLING CONSTANTS ==================
 BG_COLOR = "#2A3457"  # Dark blue background
@@ -18,7 +20,7 @@ def voteCast(root, frame1, vote, client_socket):
         widget.destroy()
 
     # Show loading spinner
-    loading_label = Label(frame1, text="Processing your vote...", font=FONT, bg=BG_COLOR)
+    loading_label = Label(frame1, text="Processing your vote...", font=FONT_TITLE, bg=BG_COLOR)
     loading_label.grid(row=1, column=1, pady=20)
     root.update()
 
@@ -32,9 +34,9 @@ def voteCast(root, frame1, vote, client_socket):
     loading_label.destroy()
 
     if message == "Successful":
-        Label(frame1, text="✅ Vote Casted Successfully", font=FONT, bg=BG_COLOR, fg="green").grid(row=1, column=1, pady=20)
+        Label(frame1, text="✅ Vote Casted Successfully", font=FONT_TITLE, bg=BG_COLOR, fg="green").grid(row=1, column=1, pady=20)
     else:
-        Label(frame1, text="❌ Vote Cast Failed... Try again", font=FONT, bg=BG_COLOR, fg="red").grid(row=1, column=1, pady=20)
+        Label(frame1, text="❌ Vote Cast Failed... Try again", font=FONT_TITLE, bg=BG_COLOR, fg="red").grid(row=1, column=1, pady=20)
 
     client_socket.close()
     root.after(3000, root.destroy)  # Close the window after 3 seconds
