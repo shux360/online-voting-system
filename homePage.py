@@ -1,4 +1,5 @@
 import subprocess as sb_p
+import threading
 import tkinter as tk
 from tkinter import *
 from Admin import AdmLogin
@@ -13,64 +14,68 @@ FONT_BUTTON = ('Helvetica', 14, 'bold')
 BTN_PADX = 20
 BTN_PADY = 10
 
+def open_new_tab():
+    """ Opens a new window (Python script) in a non-blocking way """
+    sb_p.Popen(["python", "homePage.py"], shell=True)  # Non-blocking execution
 
 def Home(root, frame1, frame2):
-    for frame in root.winfo_children():
-        for widget in frame.winfo_children():
-            widget.destroy()
-
+    """ Builds the Home screen UI """
+    # Clear existing widgets
+    for widget in frame1.winfo_children():
+        widget.destroy()
+    
+    # Top Navigation Bar
+    frame2.configure(bg=BG_COLOR)
+    frame2.pack(side=TOP, fill=X)
     
     home_btn = Button(frame2, text="🏠 Home", font=('Helvetica', 12), 
-                    bg="#3E4A6B", fg=TEXT_COLOR, activebackground="#4E5A7B",
-                    command=lambda: Home(root, frame1, frame2))
+                      bg="#3E4A6B", fg=TEXT_COLOR, activebackground="#4E5A7B",
+                      command=lambda: Home(root, frame1, frame2))
     home_btn.pack(side=LEFT, padx=10, pady=5)
-    
-    
-    Frame(frame2, bg=BG_COLOR, height=10).pack(side=BOTTOM, fill=X)
-    frame2.configure(bg=BG_COLOR)
-    frame2.pack(side=TOP, fill=X)  
 
+    Frame(frame2, bg=BG_COLOR, height=10).pack(side=BOTTOM, fill=X)
+
+    # Main Content
     root.title("Secure Voting System")
     root.configure(bg=BG_COLOR)
 
-    
     frame1.configure(bg=BG_COLOR)
     Label(frame1, text="Online Voting System", font=FONT_TITLE, 
-         bg=BG_COLOR, fg=TEXT_COLOR).pack(pady=30)
-    
+          bg=BG_COLOR, fg=TEXT_COLOR).pack(pady=30)
     
     button_frame = Frame(frame1, bg=BG_COLOR)
     button_frame.pack(expand=True)
 
-    
+    # Admin Login Button
     admin = Button(button_frame, text="Admin Login", font=FONT_BUTTON,
-                  bg="#E74C3C", fg=TEXT_COLOR, activebackground="#C0392B",
-                  padx=BTN_PADX, pady=BTN_PADY, width=15,
-                  command=lambda: AdmLogin(root, frame1))
+                   bg="#E74C3C", fg=TEXT_COLOR, activebackground="#C0392B",
+                   padx=BTN_PADX, pady=BTN_PADY, width=15,
+                   command=lambda: AdmLogin(root, frame1))
     admin.pack(pady=15)
 
-    
+    # Voter Login Button
     voter = Button(button_frame, text="Voter Login", font=FONT_BUTTON,
-                  bg=BUTTON_BG, fg=TEXT_COLOR, activebackground=BUTTON_ACTIVE,
-                  padx=BTN_PADX, pady=BTN_PADY, width=15,
-                  command=lambda: voterLogin(root, frame1))
+                   bg=BUTTON_BG, fg=TEXT_COLOR, activebackground=BUTTON_ACTIVE,
+                   padx=BTN_PADX, pady=BTN_PADY, width=15,
+                   command=lambda: voterLogin(root, frame1))
     voter.pack(pady=15)
 
-    
+    # Open New Window Button
     newTab = Button(button_frame, text="New Window", font=FONT_BUTTON,
-                   bg="#3498DB", fg=TEXT_COLOR, activebackground="#2980B9",
-                   padx=BTN_PADX, pady=BTN_PADY, width=15,
-                   command=lambda: sb_p.call('start python homePage.py', shell=True))
+                    bg="#3498DB", fg=TEXT_COLOR, activebackground="#2980B9",
+                    padx=BTN_PADX, pady=BTN_PADY, width=15,
+                    command=open_new_tab)
     newTab.pack(pady=15)
 
-    
+    # Footer Label
     Label(frame1, text="🔒 Secure Digital Voting Platform", bg=BG_COLOR, 
-         fg="#95A5A6", font=('Helvetica', 12)).pack(side=BOTTOM, pady=20)
-    
+          fg="#95A5A6", font=('Helvetica', 12)).pack(side=BOTTOM, pady=20)
+
     frame1.pack(expand=True, fill=BOTH)
     root.mainloop()
 
 def new_home():
+    """ Initializes the Tkinter root and frames """
     root = Tk()
     root.geometry('800x700')
     root.resizable(False, False)

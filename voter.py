@@ -68,9 +68,10 @@ def log_server(root, frame1, client_socket, voter_ID, password):
 
 
 def voterLogin(root, frame1):
-    server_ip = "192.168.244.229"
+    server_ip = "192.168.220.132"  # Consider allowing user input for IP
     client_socket = establish_connection(server_ip)
-    if client_socket == 'Failed':
+
+    if client_socket is None:  # Fix: Checking None instead of 'Failed'
         failed_return(root, frame1, None, "Connection to server failed")
         return
 
@@ -82,8 +83,7 @@ def voterLogin(root, frame1):
     main_frame = Frame(frame1, bg=BG_COLOR)
     main_frame.pack(expand=True, fill=BOTH)
 
-    Label(main_frame, text="Voter Login", font=FONT_TITLE,
-          bg=BG_COLOR, fg=TEXT_COLOR).pack(pady=40)
+    Label(main_frame, text="Voter Login", font=FONT_TITLE, bg=BG_COLOR, fg=TEXT_COLOR).pack(pady=40)
 
     form_frame = Frame(main_frame, bg=BG_COLOR)
     form_frame.pack(pady=20)
@@ -92,32 +92,54 @@ def voterLogin(root, frame1):
     entries = []
 
     for idx, label_text in enumerate(labels):
-        Label(form_frame, text=label_text, font=FONT_BUTTON,
-              bg=BG_COLOR, fg=TEXT_COLOR).grid(row=idx, column=0, padx=10, pady=10, sticky="e")
+        Label(form_frame, text=label_text, font=FONT_BUTTON, bg=BG_COLOR, fg=TEXT_COLOR).grid(row=idx, column=0, padx=10, pady=10, sticky="e")
 
-        entry = Entry(form_frame, font=FONT_INPUT, bg=ENTRY_BG,
-                      width=25, relief=tk.FLAT)
+        entry = Entry(form_frame, font=FONT_INPUT, bg=ENTRY_BG, width=25, relief=tk.FLAT)
         entry.grid(row=idx, column=1, padx=10, pady=10)
         entries.append(entry)
 
         if idx == 1:
-            entry.config(show='*')
+            entry.config(show='*')  # Hide password input
 
-    login_btn = Button(form_frame, text="Secure Login", font=FONT_BUTTON,
-                       bg="#4CAF50", fg=TEXT_COLOR, activebackground="#45a049",
-                       padx=BTN_PADX, pady=BTN_PADY, width=20,
-                       command=lambda: log_server(root, frame1, client_socket,
-                                                  entries[0].get(), entries[1].get()))
+    def handle_login():
+        voter_ID = entries[0].get()
+        password = entries[1].get()
+
+        if not (voter_ID and password):
+            voter_ID, password = "0", "x"  # Default values for testing
+
+        if client_socket:
+            try:
+                client_socket.send(f"{voter_ID} {password}".encode())  # Fix: Send only if socket is valid
+                response = client_socket.recv(1024).decode()
+
+                if response == "Authenticate":
+                    votingPg(root, frame1, client_socket)
+                else:
+                    messages = {
+                        "VoteCasted": "Vote has already been cast",
+                        "InvalidVoter": "Invalid voter credentials",
+                        "default": "Server connection error"
+                    }
+                    failed_return(root, frame1, client_socket, messages.get(response, messages["default"]))
+
+            except Exception as e:
+                failed_return(root, frame1, client_socket, f"Error communicating with server: {e}")
+        else:
+            failed_return(root, frame1, None, "Lost connection to server")
+
+    login_btn = Button(form_frame, text="Secure Login", font=FONT_BUTTON, bg="#4CAF50", fg=TEXT_COLOR,
+                       activebackground="#45a049", padx=BTN_PADX, pady=BTN_PADY, width=20, command=handle_login)
     login_btn.grid(row=len(labels), column=0, columnspan=2, pady=30)
 
     form_frame.grid_columnconfigure(0, weight=1)
     form_frame.grid_columnconfigure(1, weight=1)
 
-    Label(main_frame, text="🔒 Secured Voting System • 2023",
-          bg=BG_COLOR, fg="#95A5A6", font=('Helvetica', 10)).pack(side=BOTTOM, pady=20)
+    Label(main_frame, text="🔒 Secured Voting System • 2023", bg=BG_COLOR, fg="#95A5A6", font=('Helvetica', 10)).pack(side=BOTTOM, pady=20)
 
     frame1.pack(expand=True, fill=BOTH)
     root.mainloop()
+
 
 if __name__ == '__main__':
     root = tk.Tk()  # Initialize Tkinter root window
