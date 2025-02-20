@@ -3,7 +3,10 @@ import tkinter as tk
 from tkinter import *
 from Admin import AdmLogin
 from voter import voterLogin
+import threading
 
+def open_new_tab():
+    threading.Thread(target=lambda: sb_p.call('start python homePage.py', shell=True), daemon=True).start()
 
 def Home(root, frame1, frame2):
 
@@ -27,8 +30,8 @@ def Home(root, frame1, frame2):
     #Voter Login
     voter = Button(frame1, text="Voter Login", width=15, command = lambda: voterLogin(root, frame1))
 
-    #New Tab
-    newTab = Button(frame1, text="New Window", width=15, command = lambda: sb_p.call('start python homePage.py', shell=True))
+    # New Tab using threading
+    newTab = Button(frame1, text="New Window", width=15, command=open_new_tab)
 
     Label(frame1, text="").grid(row = 2,column = 0)
     Label(frame1, text="").grid(row = 4,column = 0)
