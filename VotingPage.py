@@ -32,17 +32,24 @@ def voteCast(root, frame1, vote, client_socket):
         Label(result_frame, text="❌ Vote Failed - Try Again", font=FONT_TITLE,
               bg=BG_COLOR, fg="#E74C3C").pack(pady=20)
 
-    client_socket.close()
+def closeApplication(root, client_socket):
+    try:
+        client_socket.close()
+    except:
+        pass
+    root.destroy()
+
 def countdown_timer(root, frame1, timer_label, duration):
-    for remaining in range(duration, -1, -1):
-        if not threading.main_thread().is_alive():  # Stop if the main thread is closed
-            return
-        mins, secs = divmod(remaining, 60)
-        timer_label.config(text=f"⏳ Time Left: {mins:02}:{secs:02}")
-        time.sleep(1)
-    # Timer expired
-    Label(frame1, text="⏰ Time's up! Voting session closed.", font=FONT_BUTTON, bg=BG_COLOR, fg="red").grid(row=8, column=1, pady=20)
-    root.after(3000, root.destroy)  # Close the window after 3 seconds
+    def update_timer(remaining):
+        if remaining >= 0:
+            mins, secs = divmod(remaining, 60)
+            timer_label.config(text=f"⏳ Time Left: {mins:02}:{secs:02}")
+            root.after(1000, update_timer, remaining - 1)
+        else:
+            timer_label.config(text="⏰ Time's up! Voting session closed.", fg="red")
+            root.after(3000, lambda: closeApplication(root, None))
+
+    update_timer(duration)
 
 
 def votingPg(root, frame1, client_socket):

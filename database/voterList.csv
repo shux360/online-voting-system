@@ -1,12 +1,12 @@
 ,voter_id,Name,Gender,Zone,City,Passw,hasVoted
-0,10001,Deep,Male,West,Gandhinagar,abcd,1
-1,10002,Prachi,Female,South,Surat,abcd,1
-2,10003,Het,Male,East,Surat,abcd,1
-3,10004,Shivanshi,Female,East,Gandhinagar,abcd,1
+0,10001,Deep,Male,West,Gandhinagar,abcd,0
+1,10002,Prachi,Female,South,Surat,abcd,0
+2,10003,Het,Male,East,Surat,abcd,0
+3,10004,Shivanshi,Female,East,Gandhinagar,abcd,0
 4,10005,Dev,Male,North,Ahmedabad,abcd,1
 5,10006,Kamala,Female,Galle,Galle,12345,1
 6,10007,Nimali,Female,Matara,Matara,12345,1
-7,10008,Kamala,Female,South,Galle,12345,1
+7,10008,Kamala,Female,South,Galle,12345,0
 8,10009,Hashini,Female,South,Matara,12345,0
 9,10010,Nimal,Male,Central,Kandy,12345,0
 10,10011,Kavindu,Other,galle,galle,123456,0

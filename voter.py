@@ -68,7 +68,7 @@ def log_server(root, frame1, client_socket, voter_ID, password):
 
 
 def voterLogin(root, frame1):
-    server_ip = "192.168.220.132"  # Consider allowing user input for IP
+    server_ip = "192.168.244.133"  # Consider allowing user input for IP
     client_socket = establish_connection(server_ip)
 
     if client_socket is None:  # Fix: Checking None instead of 'Failed'
