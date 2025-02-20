@@ -2,8 +2,8 @@ import tkinter as tk
 from tkinter import *
 from PIL import ImageTk, Image
 import dframe as df
-from tkinter import ttk
-
+import threading
+import time
 
 BG_COLOR = "#2A3457"  
 CARD_COLOR = "#3E4A6B"  
@@ -14,7 +14,6 @@ FONT_VOTES = ('Helvetica', 16, 'bold')
 BTN_BG = "#4CAF50"  
 BTN_ACTIVE = "#45a049"
 DANGER_BG = "#E74C3C"  
-
 
 def resetAll(root, frame1):
     df.count_reset()
@@ -27,7 +26,7 @@ def resetAll(root, frame1):
     
     success_frame = Frame(frame1, bg=BG_COLOR)
     success_frame.place(relx=0.5, rely=0.9, anchor=CENTER)
-    Label(success_frame, text="✓ System Reset Complete", 
+    Label(success_frame, text="✅ System Reset Complete", 
          fg=BTN_BG, bg=BG_COLOR, font=FONT_LABEL).pack()
 
 def showVotes(root, frame1):
@@ -80,7 +79,9 @@ def showVotes(root, frame1):
 
     
     updateVotes()
+
     main_frame.pack(expand=True)
+
 
 def adminHome():
     root = tk.Tk()

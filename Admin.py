@@ -5,7 +5,7 @@ import admFunc as adFunc
 from tkinter import *
 from registerVoter import *
 from admFunc import *
-
+import threading
 
 BG_COLOR = "#2A3457"  
 BUTTON_BG = "#4CAF50"  
@@ -57,6 +57,7 @@ def AdminHome(root, frame1, frame3):
     
     frame1.grid_columnconfigure(0, weight=1)
     frame1.pack(expand=True, fill=BOTH)
+
     root.mainloop()
 
 def log_admin(root, frame1, admin_ID, password):
@@ -64,8 +65,10 @@ def log_admin(root, frame1, admin_ID, password):
         frame3 = root.winfo_children()[1]
         AdminHome(root, frame1, frame3)
     else:
+
         msg = Message(frame1, text="Either ID or Password is Incorrect", 
                      width=500, bg=BG_COLOR, fg="#E74C3C")
+
         msg.grid(row=6, column=0, columnspan=5)
 
 def AdmLogin(root, frame1):

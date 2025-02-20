@@ -1,9 +1,7 @@
 import tkinter as tk
-import socket
 from tkinter import *
 from VotingPage import votingPg
-
-
+import socket
 BG_COLOR = "#2A3457"  
 ACCENT_COLOR = "#3E4A6B" 
 TEXT_COLOR = "white"
@@ -14,19 +12,26 @@ BTN_PADX = 20
 BTN_PADY = 10
 ENTRY_BG = "#F0F0F0"
 
-
-def establish_connection():
+def establish_connection(server_ip):
     try:
-        host = socket.gethostname()
-        port = 4001
-        client_socket = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
-        client_socket.connect((host, port))
-        message = client_socket.recv(1024)
-        return client_socket if message.decode() == "Connection Established" else 'Failed'
-    except:
-        print("Connection Failed, check if server is running...")
-        return 'Failed'
-
+        client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        client_socket.settimeout(10)  # Set a timeout for the connection
+        print(f"Attempting to connect to {server_ip}:4001...")
+        client_socket.connect((server_ip, 4001))  # Connect to the server's IP and port
+        message = client_socket.recv(1024)  # Receive connection confirmation
+        if message.decode() == "Connection Established":
+            print("Connected to the server!")
+            return client_socket
+        else:
+            print("Connection failed: Invalid response from server.")
+            return None
+    except socket.timeout:
+        print("Connection failed: Timed out. Ensure the server is running and the IP is correct.")
+        return None
+    except Exception as e:
+        print(f"Connection failed: {e}")
+        return None
+      
 def failed_return(root, frame1, client_socket, message):
     for widget in frame1.winfo_children():
         widget.destroy()
@@ -43,7 +48,7 @@ def failed_return(root, frame1, client_socket, message):
         client_socket.close()
     except:
         pass
-
+   
 def log_server(root, frame1, client_socket, voter_ID, password):
     if not (voter_ID and password):
         voter_ID, password = "0", "x"

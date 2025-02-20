@@ -1,5 +1,4 @@
 import tkinter as tk
-import socket
 from tkinter import *
 from PIL import ImageTk, Image
 
@@ -13,30 +12,51 @@ PARTY_COLOR = "#3E4A6B"  # Party button background
 ACTIVE_COLOR = "#4E5A7B"  # Active button color
 # ========================================================
 
+
 def voteCast(root, frame1, vote, client_socket):
     for widget in frame1.winfo_children():
         widget.destroy()
 
-    client_socket.send(vote.encode())
-    message = client_socket.recv(1024).decode()
+    # Show loading spinner
+    loading_label = Label(frame1, text="Processing your vote...", font=FONT, bg=BG_COLOR)
+    loading_label.grid(row=1, column=1, pady=20)
+    root.update()
 
-    result_frame = Frame(frame1, bg=BG_COLOR)
-    result_frame.place(relx=0.5, rely=0.5, anchor=CENTER)
-    
+    client_socket.send(vote.encode())  # Send vote to server
+
+    message = client_socket.recv(1024)  # Receive success message
+    print(message.decode())
+    message = message.decode()
+
+    # Remove loading spinner
+    loading_label.destroy()
+
     if message == "Successful":
-        Label(result_frame, text="✓ Vote Cast Successfully", font=FONT_TITLE,
-             bg=BG_COLOR, fg=BUTTON_BG).pack(pady=20)
+        Label(frame1, text="✅ Vote Casted Successfully", font=FONT, bg=BG_COLOR, fg="green").grid(row=1, column=1, pady=20)
     else:
-        Label(result_frame, text="⚠️ Vote Failed - Try Again", font=FONT_TITLE,
-             bg=BG_COLOR, fg="#E74C3C").pack(pady=20)
+        Label(frame1, text="❌ Vote Cast Failed... Try again", font=FONT, bg=BG_COLOR, fg="red").grid(row=1, column=1, pady=20)
 
     client_socket.close()
+    root.after(3000, root.destroy)  # Close the window after 3 seconds
+
+def countdown_timer(root, frame1, timer_label, duration):
+    for remaining in range(duration, -1, -1):
+        if not threading.main_thread().is_alive():  # Stop if the main thread is closed
+            return
+        mins, secs = divmod(remaining, 60)
+        timer_label.config(text=f"⏳ Time Left: {mins:02}:{secs:02}")
+        time.sleep(1)
+    # Timer expired
+    Label(frame1, text="⏰ Time's up! Voting session closed.", font=FONT, bg=BG_COLOR, fg="red").grid(row=8, column=1, pady=20)
+    root.after(3000, root.destroy)  # Close the window after 3 seconds
+
 
 def votingPg(root, frame1, client_socket):
     root.title("Cast Your Vote")
     root.configure(bg=BG_COLOR)
     for widget in frame1.winfo_children():
         widget.destroy()
+
 
     # Store image references
     image_refs = []
