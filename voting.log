@@ -186,6 +186,88 @@
 2025-02-20 21:16:44,489 - Voter Logged in... ID: 10007
 2025-02-20 21:16:57,712 - Vote Received from ID: 10007 - Processing...
 2025-02-20 21:16:57,756 - Vote Casted Successfully by voter ID = 10007
+2025-02-20 21:21:41,398 - Received voter details: 10008 12345
+2025-02-20 21:21:41,416 - Voter Logged in... ID: 10008
+2025-02-20 21:21:59,058 - Vote Received from ID: 10008 - Processing...
+2025-02-20 21:21:59,170 - Vote Casted Successfully by voter ID = 10008
+2025-02-20 22:42:42,667 - Received voter details: 10011 123456
+2025-02-20 22:42:42,709 - Voter Logged in... ID: 10011
+2025-02-20 22:42:52,700 - Received voter details: 10009 12345
+2025-02-20 22:42:52,721 - Voter Logged in... ID: 10009
+2025-02-20 22:42:54,152 - Received voter details: 10010 12345
+2025-02-20 22:42:54,182 - Voter Logged in... ID: 10010
+2025-02-20 22:43:05,793 - Vote Received from ID: 10010 - Processing...
+2025-02-20 22:43:05,809 - Vote Received from ID: 10009 - Processing...
+2025-02-20 22:43:05,856 - Vote Casted Successfully by voter ID = 10010
+2025-02-20 22:43:05,888 - Vote Casted Successfully by voter ID = 10009
+2025-02-20 22:43:05,919 - Vote Received from ID: 10011 - Processing...
+2025-02-20 22:43:05,935 - Vote Casted Successfully by voter ID = 10011
+2025-02-20 22:47:15,005 - Received voter details: 10002 abcd
+2025-02-20 22:47:15,005 - Voter Logged in... ID: 10002
+2025-02-20 22:47:18,395 - Vote Received from ID: 10002 - Processing...
+2025-02-20 22:47:18,410 - Vote Casted Successfully by voter ID = 10002
+2025-02-20 22:47:40,019 - Received voter details: 10004 abcd
+2025-02-20 22:47:40,019 - Voter Logged in... ID: 10004
+2025-02-20 22:47:40,129 - Received voter details: 10001 abcd
+2025-02-20 22:47:40,129 - Voter Logged in... ID: 10001
+2025-02-20 22:47:40,238 - Received voter details: 10003 abcd
+2025-02-20 22:47:40,238 - Voter Logged in... ID: 10003
+2025-02-20 22:48:12,688 - Vote Received from ID: 10004 - Processing...
+2025-02-20 22:48:12,699 - Vote Casted Successfully by voter ID = 10004
+2025-02-20 22:48:12,720 - Vote Received from ID: 10001 - Processing...
+2025-02-20 22:48:12,729 - Vote Casted Successfully by voter ID = 10001
+2025-02-20 22:48:12,803 - Vote Received from ID: 10003 - Processing...
+2025-02-20 22:48:12,814 - Vote Casted Successfully by voter ID = 10003
+2025-02-20 22:49:10,227 - Received voter details: 10001 abcd
+2025-02-20 22:49:10,242 - Vote Already Cast by ID: 10001
+2025-02-20 22:49:10,289 - Vote Received from ID: 10001 - Processing...
+2025-02-20 22:49:10,305 - Vote Update Failed by voter ID = 10001
+2025-02-20 22:49:10,541 - Received voter details: 10004 abcd
+2025-02-20 22:49:10,557 - Vote Already Cast by ID: 10004
+2025-02-20 22:49:10,745 - Vote Received from ID: 10004 - Processing...
+2025-02-20 22:49:10,760 - Vote Update Failed by voter ID = 10004
+2025-02-20 22:49:11,875 - Received voter details: 10003 abcd
+2025-02-20 22:49:11,898 - Vote Already Cast by ID: 10003
+2025-02-20 22:49:12,197 - Vote Received from ID: 10003 - Processing...
+2025-02-20 22:49:12,197 - Vote Update Failed by voter ID = 10003
+2025-02-20 22:50:35,224 - Received voter details: 10005 abcd
+2025-02-20 22:50:35,239 - Voter Logged in... ID: 10005
+2025-02-20 22:50:37,891 - Received voter details: 10007 12345
+2025-02-20 22:50:37,913 - Voter Logged in... ID: 10007
+2025-02-20 22:50:39,734 - Received voter details: 10006 12345
+2025-02-20 22:50:39,735 - Voter Logged in... ID: 10006
+2025-02-20 22:50:48,395 - Vote Received from ID: 10006 - Processing...
+2025-02-20 22:50:48,395 - Vote Received from ID: 10005 - Processing...
+2025-02-20 22:50:48,426 - Vote Casted Successfully by voter ID = 10006
+2025-02-20 22:50:48,457 - Vote Casted Successfully by voter ID = 10005
+2025-02-20 22:50:48,741 - Vote Received from ID: 10007 - Processing...
+2025-02-20 22:50:48,772 - Vote Casted Successfully by voter ID = 10007
+2025-02-20 22:52:06,880 - Received voter details: 10009 12345
+2025-02-20 22:52:06,896 - Voter Logged in... ID: 10009
+2025-02-20 22:52:23,472 - Received voter details: 10008 12345
+2025-02-20 22:52:23,472 - Voter Logged in... ID: 10008
+2025-02-20 22:52:30,535 - Received voter details: 10010 12345
+2025-02-20 22:52:30,551 - Voter Logged in... ID: 10010
+2025-02-20 22:53:36,255 - Vote Received from ID: 10009 - Processing...
+2025-02-20 22:53:36,271 - Vote Casted Successfully by voter ID = 10009
+2025-02-20 22:53:36,568 - Vote Received from ID: 10008 - Processing...
+2025-02-20 22:53:36,583 - Vote Casted Successfully by voter ID = 10008
+2025-02-20 22:53:42,689 - Vote Received from ID: 10010 - Processing...
+2025-02-20 22:53:42,696 - Vote Casted Successfully by voter ID = 10010
+2025-02-20 22:56:58,074 - Received voter details: 10011 123456
+2025-02-20 22:56:58,084 - Voter Logged in... ID: 10011
+2025-02-20 22:57:35,146 - Vote Received from ID: 10011 - Processing...
+2025-02-20 22:57:35,146 - Vote Casted Successfully by voter ID = 10011
+2025-02-20 22:59:31,880 - Received voter details: 10001 abcd
+2025-02-20 22:59:31,880 - Voter Logged in... ID: 10001
+2025-02-20 23:00:47,542 - Vote Received from ID: 10001 - Processing...
+2025-02-20 23:00:47,553 - Vote Casted Successfully by voter ID = 10001
+2025-02-20 23:07:12,811 - Received voter details: 10002 abcd
+2025-02-20 23:07:12,820 - Voter Logged in... ID: 10002
+2025-02-20 23:08:54,286 - Vote Received from ID: 10002 - Processing...
+2025-02-20 23:08:54,297 - Vote Casted Successfully by voter ID = 10002
+2025-02-20 23:12:30,515 - Received voter details: 10003 abcd
+2025-02-20 23:12:30,515 - Voter Logged in... ID: 10003
 2025-02-20 22:27:12,217 - Received voter details: 
 2025-02-20 22:27:12,220 - Invalid Credentials
 2025-02-20 22:28:04,940 - Received voter details: 10007 12345
@@ -218,3 +300,99 @@
 2025-02-20 23:26:34,075 - Vote Already Cast by ID: 10007
 2025-02-20 23:26:34,102 - Vote Received from ID: 10007 - Processing...
 2025-02-20 23:26:34,107 - Vote Update Failed by voter ID = 10007
+2025-02-20 23:57:26,273 - Received voter details: 10003 abcd
+2025-02-20 23:57:26,273 - Vote Already Cast by ID: 10003
+2025-02-20 23:57:26,319 - Vote Received from ID: 10003 - Processing...
+2025-02-20 23:57:26,319 - Vote Update Failed by voter ID = 10003
+2025-02-20 23:57:48,082 - Received voter details: 10008 12345
+2025-02-20 23:57:48,088 - Voter Logged in... ID: 10008
+2025-02-20 23:58:11,374 - Received voter details: 10009 12345
+2025-02-20 23:58:11,374 - Voter Logged in... ID: 10009
+2025-02-20 23:58:21,490 - Received voter details: 10008 12345
+2025-02-20 23:58:21,490 - Voter Logged in... ID: 10008
+2025-02-20 23:58:52,303 - Vote Received from ID: 10008 - Processing...
+2025-02-20 23:58:52,403 - Vote Casted Successfully by voter ID = 10008
+2025-02-20 23:59:16,084 - Vote Received from ID: 10009 - Processing...
+2025-02-20 23:59:16,100 - Vote Casted Successfully by voter ID = 10009
+2025-02-20 23:59:26,180 - Vote Received from ID: 10008 - Processing...
+2025-02-20 23:59:26,180 - Vote Update Failed by voter ID = 10008
+2025-02-21 00:01:31,972 - Received voter details: 10002 abcd
+2025-02-21 00:01:31,972 - Voter Logged in... ID: 10002
+2025-02-21 00:01:32,409 - Received voter details: 10001 abcd
+2025-02-21 00:01:32,412 - Voter Logged in... ID: 10001
+2025-02-21 00:01:42,779 - Received voter details: 10003 abcd
+2025-02-21 00:01:42,784 - Voter Logged in... ID: 10003
+2025-02-21 00:01:49,442 - Vote Received from ID: 10003 - Processing...
+2025-02-21 00:01:49,457 - Vote Casted Successfully by voter ID = 10003
+2025-02-21 00:01:49,567 - Vote Received from ID: 10001 - Processing...
+2025-02-21 00:01:49,567 - Vote Casted Successfully by voter ID = 10001
+2025-02-21 00:01:49,582 - Vote Received from ID: 10002 - Processing...
+2025-02-21 00:01:49,582 - Vote Casted Successfully by voter ID = 10002
+2025-02-21 00:02:48,257 - Received voter details: 10005 abcd
+2025-02-21 00:02:48,257 - Voter Logged in... ID: 10005
+2025-02-21 00:02:52,449 - Received voter details: 10004 abcd
+2025-02-21 00:02:52,454 - Voter Logged in... ID: 10004
+2025-02-21 00:02:58,011 - Received voter details: 10006 12345
+2025-02-21 00:02:58,017 - Voter Logged in... ID: 10006
+2025-02-21 00:03:10,019 - Vote Received from ID: 10006 - Processing...
+2025-02-21 00:03:10,035 - Vote Casted Successfully by voter ID = 10006
+2025-02-21 00:03:10,161 - Vote Received from ID: 10005 - Processing...
+2025-02-21 00:03:10,176 - Vote Casted Successfully by voter ID = 10005
+2025-02-21 00:03:10,207 - Vote Received from ID: 10004 - Processing...
+2025-02-21 00:03:10,207 - Vote Casted Successfully by voter ID = 10004
+2025-02-21 00:03:44,473 - Received voter details: 10007 12345
+2025-02-21 00:03:44,473 - Voter Logged in... ID: 10007
+2025-02-21 00:03:58,755 - Received voter details: 10009 12345
+2025-02-21 00:03:58,770 - Voter Logged in... ID: 10009
+2025-02-21 00:03:59,865 - Received voter details: 10008 12345
+2025-02-21 00:03:59,865 - Voter Logged in... ID: 10008
+2025-02-21 00:04:04,207 - Vote Received from ID: 10008 - Processing...
+2025-02-21 00:04:04,223 - Vote Casted Successfully by voter ID = 10008
+2025-02-21 00:04:04,520 - Vote Received from ID: 10009 - Processing...
+2025-02-21 00:04:04,536 - Vote Casted Successfully by voter ID = 10009
+2025-02-21 00:04:04,551 - Vote Received from ID: 10007 - Processing...
+2025-02-21 00:04:04,551 - Vote Casted Successfully by voter ID = 10007
+2025-02-21 00:06:08,428 - Received voter details: 
+2025-02-21 00:06:08,442 - Invalid Credentials
+2025-02-21 00:30:17,461 - Received voter details: 1001 abcd
+2025-02-21 00:30:17,481 - Invalid Voter: 1001
+2025-02-21 00:30:47,068 - Received voter details: 10001 abcd
+2025-02-21 00:30:47,084 - Voter Logged in... ID: 10001
+2025-02-21 00:30:55,577 - Received voter details: 10004 abcd
+2025-02-21 00:30:55,579 - Voter Logged in... ID: 10004
+2025-02-21 00:30:55,799 - Received voter details: 10007 12345
+2025-02-21 00:30:55,816 - Voter Logged in... ID: 10007
+2025-02-21 00:30:56,766 - Received voter details: 10008 12345
+2025-02-21 00:30:56,798 - Voter Logged in... ID: 10008
+2025-02-21 00:30:57,083 - Received voter details: 10005 abcd
+2025-02-21 00:30:57,101 - Voter Logged in... ID: 10005
+2025-02-21 00:30:57,907 - Received voter details: 10009 12345
+2025-02-21 00:30:57,934 - Voter Logged in... ID: 10009
+2025-02-21 00:30:58,426 - Received voter details: 10006 12345
+2025-02-21 00:30:58,441 - Voter Logged in... ID: 10006
+2025-02-21 00:30:58,504 - Received voter details: 10010 12345
+2025-02-21 00:30:58,520 - Voter Logged in... ID: 10010
+2025-02-21 00:31:02,616 - Received voter details: 10002 abcd
+2025-02-21 00:31:02,632 - Voter Logged in... ID: 10002
+2025-02-21 00:31:20,828 - Received voter details: 10003 abcd
+2025-02-21 00:31:20,859 - Voter Logged in... ID: 10003
+2025-02-21 00:31:50,122 - Vote Received from ID: 10007 - Processing...
+2025-02-21 00:31:50,170 - Vote Casted Successfully by voter ID = 10007
+2025-02-21 00:31:50,833 - Vote Received from ID: 10008 - Processing...
+2025-02-21 00:31:50,833 - Vote Received from ID: 10005 - Processing...
+2025-02-21 00:31:50,880 - Vote Casted Successfully by voter ID = 10008
+2025-02-21 00:31:50,922 - Vote Casted Successfully by voter ID = 10005
+2025-02-21 00:31:51,448 - Vote Received from ID: 10001 - Processing...
+2025-02-21 00:31:51,480 - Vote Casted Successfully by voter ID = 10001
+2025-02-21 00:31:51,512 - Vote Received from ID: 10009 - Processing...
+2025-02-21 00:31:51,543 - Vote Casted Successfully by voter ID = 10009
+2025-02-21 00:31:51,559 - Vote Received from ID: 10006 - Processing...
+2025-02-21 00:31:51,593 - Vote Casted Successfully by voter ID = 10006
+2025-02-21 00:31:52,278 - Vote Received from ID: 10010 - Processing...
+2025-02-21 00:31:52,317 - Vote Casted Successfully by voter ID = 10010
+2025-02-21 00:31:52,790 - Vote Received from ID: 10002 - Processing...
+2025-02-21 00:31:52,822 - Vote Casted Successfully by voter ID = 10002
+2025-02-21 00:31:53,243 - Vote Received from ID: 10004 - Processing...
+2025-02-21 00:31:53,275 - Vote Casted Successfully by voter ID = 10004
+2025-02-21 00:31:54,328 - Vote Received from ID: 10003 - Processing...
+2025-02-21 00:31:54,359 - Vote Casted Successfully by voter ID = 10003

@@ -1,7 +1,6 @@
 import pandas as pd
 from pathlib import Path
 
-# path = Path("C:/Users/Desktop/Sem-5/CS301 CN/Project/Voting/database")
 path = Path("database")
 
 def count_reset():
@@ -75,7 +74,6 @@ def show_result():
     v_cnt = {}
     for index, row in df.iterrows():
         v_cnt[df['Sign'].iloc[index]] = df['Vote Count'].iloc[index]
-    # print(v_cnt)
     return v_cnt
 
 

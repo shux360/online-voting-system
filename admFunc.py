@@ -5,8 +5,7 @@ import threading
 import dframe as df
 import time
 
-# Colors and Fonts
-BG_COLOR = "#2A3457"  
+BG_COLOR = "#2A3457"
 CARD_COLOR = "#3E4A6B"  
 TEXT_COLOR = "white"
 FONT_TITLE = ('Helvetica', 24, 'bold')
@@ -17,7 +16,6 @@ BTN_ACTIVE = "#45a049"
 DANGER_BG = "#E74C3C"  
 
 def resetAll(root, frame1):
-    """ Resets all election data """
     df.count_reset()
     df.reset_voter_list()
     df.reset_cand_list()
@@ -32,19 +30,16 @@ def resetAll(root, frame1):
           fg=BTN_BG, bg=BG_COLOR, font=FONT_LABEL).pack()
 
 def fetchVotes(vote_labels, root):
-    """ Fetches vote counts in a separate thread and updates the UI safely """
     while True:
         result = df.show_result()
-        root.after(0, lambda: updateUI(result, vote_labels))  # Safe UI update
-        time.sleep(1)  # Fetch every second
+        root.after(0, lambda: updateUI(result, vote_labels))
+        time.sleep(1)
 
 def updateUI(result, vote_labels):
-    """ Safely updates vote labels on the UI thread """
     for party, votes in result.items():
         vote_labels[party].config(text=str(votes))
 
 def showVotes(root, frame1):
-    """ Displays live election results using threading """
     root.title("Live Vote Results")
     for widget in frame1.winfo_children():
         widget.destroy()
@@ -73,7 +68,7 @@ def showVotes(root, frame1):
             img = ImageTk.PhotoImage(Image.open(img_path).resize((80, 70), Image.LANCZOS))
         except Exception as e:
             print(f"Error loading {img_path}: {e}")
-            img = ImageTk.PhotoImage(Image.new("RGB", (80, 70), "gray"))  # Placeholder image
+            img = ImageTk.PhotoImage(Image.new("RGB", (80, 70), "gray"))
         
         frame1.image_refs.append(img)
         Label(card, image=img, bg=CARD_COLOR).grid(row=0, column=0, rowspan=2)
@@ -82,11 +77,9 @@ def showVotes(root, frame1):
         vote_labels[party] = Label(card, text="0", font=FONT_VOTES, bg=CARD_COLOR, fg="#4CAF50")
         vote_labels[party].grid(row=1, column=1, sticky="w")
 
-    # Start thread for fetching vote updates
     threading.Thread(target=fetchVotes, args=(vote_labels, root), daemon=True).start()
 
 def adminHome():
-    """ Creates the Admin Dashboard window """
     root = tk.Tk()
     root.geometry('800x600')
     root.configure(bg=BG_COLOR)

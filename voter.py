@@ -15,10 +15,10 @@ ENTRY_BG = "#F0F0F0"
 def establish_connection(server_ip):
     try:
         client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        client_socket.settimeout(10)  # Set a timeout for the connection
+        client_socket.settimeout(10)
         print(f"Attempting to connect to {server_ip}:4001...")
-        client_socket.connect((server_ip, 4001))  # Connect to the server's IP and port
-        message = client_socket.recv(1024)  # Receive connection confirmation
+        client_socket.connect((server_ip, 4001))
+        message = client_socket.recv(1024)
         if message.decode() == "Connection Established":
             print("Connected to the server!")
             return client_socket
@@ -68,10 +68,10 @@ def log_server(root, frame1, client_socket, voter_ID, password):
 
 
 def voterLogin(root, frame1):
-    server_ip = "192.168.244.133"  # Consider allowing user input for IP
+    server_ip = "192.168.244.229"
     client_socket = establish_connection(server_ip)
 
-    if client_socket is None:  # Fix: Checking None instead of 'Failed'
+    if client_socket is None:
         failed_return(root, frame1, None, "Connection to server failed")
         return
 
@@ -99,18 +99,18 @@ def voterLogin(root, frame1):
         entries.append(entry)
 
         if idx == 1:
-            entry.config(show='*')  # Hide password input
+            entry.config(show='*')
 
     def handle_login():
         voter_ID = entries[0].get()
         password = entries[1].get()
 
         if not (voter_ID and password):
-            voter_ID, password = "0", "x"  # Default values for testing
+            voter_ID, password = "0", "x"
 
         if client_socket:
             try:
-                client_socket.send(f"{voter_ID} {password}".encode())  # Fix: Send only if socket is valid
+                client_socket.send(f"{voter_ID} {password}".encode())
                 response = client_socket.recv(1024).decode()
 
                 if response == "Authenticate":
@@ -142,8 +142,7 @@ def voterLogin(root, frame1):
 
 
 if __name__ == '__main__':
-    root = tk.Tk()  # Initialize Tkinter root window
-    frame1 = Frame(root, bg=BG_COLOR)  # Create a frame
-    frame1.pack(expand=True, fill=BOTH)  # Pack the frame
+    root = tk.Tk()
+    frame1 = Frame(root, bg=BG_COLOR)
 
-    voterLogin(root, frame1)  # Call voterLogin function
+    voterLogin(root, frame1)
