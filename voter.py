@@ -12,13 +12,12 @@ BTN_PADX = 20
 BTN_PADY = 10
 ENTRY_BG = "#F0F0F0"
 
-def establish_connection():
+def establish_connection(server_ip):
     try:
-        host = socket.gethostname()
         client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         client_socket.settimeout(10)  # Set a timeout for the connection
-        print(f"Attempting to connect to {host}:4001...")
-        client_socket.connect((host, 4001))  # Connect to the server's IP and port
+        print(f"Attempting to connect to {server_ip}:4001...")
+        client_socket.connect((server_ip, 4001))  # Connect to the server's IP and port
         message = client_socket.recv(1024)  # Receive connection confirmation
         if message.decode() == "Connection Established":
             print("Connected to the server!")
@@ -69,7 +68,8 @@ def log_server(root, frame1, client_socket, voter_ID, password):
 
 
 def voterLogin(root, frame1):
-    client_socket = establish_connection()
+    server_ip = "192.168.244.229"
+    client_socket = establish_connection(server_ip)
     if client_socket == 'Failed':
         failed_return(root, frame1, None, "Connection to server failed")
         return
@@ -118,3 +118,10 @@ def voterLogin(root, frame1):
 
     frame1.pack(expand=True, fill=BOTH)
     root.mainloop()
+
+if __name__ == '__main__':
+    root = tk.Tk()  # Initialize Tkinter root window
+    frame1 = Frame(root, bg=BG_COLOR)  # Create a frame
+    frame1.pack(expand=True, fill=BOTH)  # Pack the frame
+
+    voterLogin(root, frame1)  # Call voterLogin function
